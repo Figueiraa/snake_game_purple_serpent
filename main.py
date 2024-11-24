@@ -130,9 +130,9 @@ def draw_difficulty_menu(screen):
     screen.blit(title_text, (resolution[0] // 2 - title_text.get_width() // 2, 30))
 
     font = pygame.font.SysFont("comicsansms", 40, bold=True)
-    easy_text = font.render("1. Easy", True, (255, 255, 255))
-    medium_text = font.render("2. Medium", True, (255, 255, 255))
-    hard_text = font.render("3. Hard", True, (255, 255, 255))
+    easy_text = font.render("Easy - Press 1", True, (255, 255, 255))
+    medium_text = font.render("Medium - Press 2", True, (255, 255, 255))
+    hard_text = font.render("Hard - Press 3", True, (255, 255, 255))
     quit_text = font.render("Press ESC to Quit", True, (255, 255, 255))
 
     easy_text_rect = easy_text.get_rect(
@@ -177,11 +177,11 @@ def select_difficulty():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-                if event.key == pygame.K_1:
+                if event.key in (pygame.K_1, pygame.K_KP1):
                     return "EASY"
-                if event.key == pygame.K_2:
+                if event.key in (pygame.K_2, pygame.K_KP2):
                     return "MEDIUM"
-                if event.key == pygame.K_3:
+                if event.key in (pygame.K_3, pygame.K_KP3):
                     return "HARD"
 
 
@@ -228,13 +228,13 @@ def start_game(screen, difficulty):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE or event.key == pygame.K_q:
                     return False
-                if event.key == pygame.K_UP:
+                if event.key in (pygame.K_UP, pygame.K_w):
                     change_to = "UP"
-                if event.key == pygame.K_DOWN:
+                if event.key in (pygame.K_DOWN, pygame.K_s):
                     change_to = "DOWN"
-                if event.key == pygame.K_LEFT:
+                if event.key in (pygame.K_LEFT, pygame.K_a):
                     change_to = "LEFT"
-                if event.key == pygame.K_RIGHT:
+                if event.key in (pygame.K_RIGHT, pygame.K_d):
                     change_to = "RIGHT"
 
         if change_to == "UP" and direction != "DOWN":
@@ -325,7 +325,7 @@ def game_loop():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-                if event.key == pygame.K_RETURN:
+                if event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
                     waiting_for_input = False
 
     while True:
